@@ -208,7 +208,6 @@ function App() {
                   <Tab eventKey="json" title="JSON">
                     <JSONInput
                       id="a_unique_id"
-                      //
                       theme="dark_vscode_tribute"
                       colors={{
                         string: "#59A5D8", // overrides theme colors with whatever color value you want

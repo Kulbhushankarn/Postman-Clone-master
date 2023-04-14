@@ -77,6 +77,7 @@ function Response() {
           setResponse(response.data);
           setResponseHeaders(response.headers);
           setTime(response.customData.time);
+        //   setResponseTime(response.)
           setSize(
             prettyBytes(
               JSON.stringify(response.data).length +
