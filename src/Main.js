@@ -8,6 +8,8 @@ import { Tab, Tabs } from "react-bootstrap";
 import prettyBytes from "pretty-bytes";
 import JSONInput from "react-json-editor-ajrm";
 import locale from "react-json-editor-ajrm/locale/en";
+import CircularStatic from "./Loader";
+
 
 function Main() {
   const [status, setStatus] = useState(0);
@@ -16,20 +18,22 @@ function Main() {
   const [response, setResponse] = useState({});
   const [responseHeaders, setResponseHeaders] = useState({});
   const [json, setJSON] = useState({});
+  const [loader, setLoader] = useState(false);
 
   axios.interceptors.request.use((request) => {
     console.log("request:", request);
     request.customData = request.customData || {};
     request.customData.startTime = new Date().getTime();
+    setLoader(true)
     return request;
   });
 
   function updateEndTime(response) {
-    // defaulting custom data
+    
     console.log(response);
     if (response !== undefined) {
       response.customData = response.customData || {};
-      // setting the time
+      
       response.customData.time =
         new Date().getTime() - response.config.customData.startTime;
       return response;
@@ -37,6 +41,7 @@ function Main() {
   }
 
   axios.interceptors.response.use(updateEndTime, (e) => {
+    setLoader(false)
     return Promise.reject(updateEndTime(e.response));
   });
 
@@ -74,6 +79,7 @@ function Main() {
         console.log(response);
         if (response !== undefined) {
           console.log("RESPONSE:", response);
+
           setStatus(response.status);
           setResponse(response.data);
           setResponseHeaders(response.headers);
@@ -236,6 +242,7 @@ function Main() {
             <div className="me-3">Size: {size}</div>
           </div>
           <div>
+          {loader?loader : 'Loading.....'}
             <Tabs
               defaultActiveKey="body"
               id="uncontrolled-tab-example"

@@ -16,7 +16,7 @@ export default function App() {
     setActiveTab(newTab.id);
   };
  
-  //Close tab functionality
+  //Close tab 
   const closeTab = (tabId) => {
     const newupdateTabs = tabs.filter((tab) => tab.id !== tabId);
     setTabs(newupdateTabs);
