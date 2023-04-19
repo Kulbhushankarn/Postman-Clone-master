@@ -17,7 +17,7 @@ function Response() {
   const [json, setJSON] = useState({});
 
   axios.interceptors.request.use((request) => {
-    //console.log("request:", request);
+    console.log("request:", request);
     request.customData = request.customData || {};
     request.customData.startTime = new Date().getTime();
     return request;
@@ -25,7 +25,7 @@ function Response() {
 
   function updateEndTime(response) {
     // defaulting custom data
-    //console.log(response);
+    console.log(response);
     if (response !== undefined) {
       response.customData = response.customData || {};
       // setting the time
@@ -94,25 +94,27 @@ function Response() {
             <br/>
             <br/>
           <h4>Response</h4>
-          {/* <div className="d-flex my-2">
+          <div className="d-flex my-2">
             <div className="me-3">Status: {status}</div>
             <div className="me-3">Time: {time} ms</div>
             <div className="me-3">Size: {size}</div>
-          </div> */}
+            <div className="me-3">index:</div>
+          </div>
           <div>
             <Tabs
               defaultActiveKey="body"
               id="uncontrolled-tab-example"
               className="nav nav-tabs"
             >
+
               <Tab eventKey="body" title="Body">
                 <pre className="scroll">
                   {JSON.stringify(response, null, 2)}
                 </pre>
               </Tab>
-              {/* <Tab eventKey="response" title="Response">
+              <Tab eventKey="response" title="Response">
                 <pre>{JSON.stringify(responseHeaders, null, 2)}</pre>
-              </Tab> */}
+              </Tab>
             </Tabs>
           </div>
         </div>
