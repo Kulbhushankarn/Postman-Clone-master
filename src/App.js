@@ -8,19 +8,20 @@ export default function App() {
   //Tabs
   const [tabs, setTabs] = useState([{ id: 1 }]);
   const [activeTab, setActiveTab] = useState(0);
+  
   //Add tab functionlity
   const addTab = () => {
     const newTab = { id: tabs.length + 1 };
     setTabs([...tabs, newTab]);
     setActiveTab(newTab.id);
   };
+ 
   //Close tab functionality
   const closeTab = (tabId) => {
-    const newupdateTab = tabs.filter((tab) => tab.id !== tabId);
-    setTabs(newupdateTab);
+    const newupdateTabs = tabs.filter((tab) => tab.id !== tabId);
+    setTabs(newupdateTabs);
     if (activeTab === tabId) {
-      setActiveTab(newupdateTab.length > 0 ? newupdateTab[0].id : null);
-      // setData(data);
+      setActiveTab(newupdateTabs.length > 0 ? newupdateTabs[0].id : null);
     }
   };
   return (
