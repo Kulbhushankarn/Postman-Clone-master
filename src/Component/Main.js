@@ -55,7 +55,7 @@ function Main() {
     try {
       dataJson = json;
     } catch (e) {
-      alert("JSON data is msajhjd");
+      alert("JSON data is malformed");
       return;
     }
     axios({
