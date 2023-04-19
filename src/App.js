@@ -5,11 +5,11 @@ import "./App.css";
 
 
 export default function App() {
-  //Tabs
+  
   const [tabs, setTabs] = useState([{ id: 1 }]);
   const [activeTab, setActiveTab] = useState(0);
   
-  //Add tab functionlity
+  //Add tabs
   const addTab = () => {
     const newTab = { id: tabs.length + 1 };
     setTabs([...tabs, newTab]);
